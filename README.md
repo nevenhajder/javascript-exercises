@@ -1,2 +1,2 @@
 # javascript-exercises
-Where I solve JavaScript Exercises for fun
+Where I solve JavaScript exercises for fun.
