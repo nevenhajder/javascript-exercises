@@ -14,20 +14,14 @@
         <div class="row">
             <main class="col-sm-4 col-sm-offset-4">
                 <br><br>
-                <label for="userNum">Enter a number to convert :</label>
-                <input type="number" class="form-control" id="userNum" value="0">
+                <label for="userInput">Enter a number you wish to see in reverse order :</label>
+                <input type="number" class="form-control" id="userInput" value="0">
                 <br>
-                <label class="radio-inline">
-                    <input type="radio" name="units" id="units1" value="celsius" checked> To Celsius
-                </label>
 
-                <label class="radio-inline">
-                    <input type="radio" name="units" id="units2" value="fahrenheit"> To Farenheit
-                </label>
+                <button type="button" class="btn btn-primary btn-lg btn-block" id="btnReverse">
+                    <span class="glyphicon glyphicon-transfer"></span>
+                </button>
 
-                <br><br><br>
-
-                <button type="button" id="btnConvert" class="btn btn-lg btn-primary">Convert</button>
                 
                 <h1 id="resultDisplay"></h1>
 

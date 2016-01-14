@@ -1,3 +1,9 @@
-main {
-	text-align: center;	
+body,
+input,
+.glyphicon {
+    font-size: 2em;
+}
+
+h1 {
+    text-align: center;
 }

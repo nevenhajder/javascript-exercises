@@ -1,50 +1,49 @@
 
 /*  Assignment:
-        Write a program to convert Celsius to Farenheit and vice versa.
+        Write a program that reverses a number.
 */
 
 /*  Steps:
         1. Get the number from the user.
-        2. Have to user select which units they want (radio buttons).
-        3. Press button to convert.
+        2. Have to user press the button.
+        3. Reverse the number.
+        4. Display the number.
 */
 
 (function () {
     "use strict";
 
     /* Variables */
-    var userNum = document.getElementById("userNum");
-    var radioC = document.getElementById("units1");
-    var btnConvert = document.getElementById("btnConvert");
+    var userInput = document.getElementById("userInput");
+    var btnReverse = document.getElementById("btnReverse");
     var resultDisplay = document.getElementById("resultDisplay");
 
     /* Functions */
-    function checkUnits() {
-        if (radioC.checked) {
-            return 'c';
-        } else {
-            return 'f';
+    function reverse(string) {
+        var revString = '';
+        var loopCount = string.length;
+
+        for (var i = 0; i < loopCount; i++) {
+            // Take the last character in string and add it to revString
+            revString = revString + string.substr(-1);
+            // Slice the last character from string
+            string = string.slice(0, -1);
         }
+
+        return revString;
     }
 
-    function convert() {
-        var arg = parseInt(userNum.value, 10);
-
-        if (checkUnits() === 'c') {
-            return Math.round((arg - 32) / 1.8);
-        } else {
-            return Math.round(arg * 1.8 + 32);
-        }
-    }
-
-    function display() {
-        resultDisplay.innerHTML = convert();
+    function display(arg) {
+        resultDisplay.textContent = arg;
     }
 
 
     /* Events */
-    btnConvert.addEventListener('click', function () {
-        display();
+    btnReverse.addEventListener('click', function () {
+        
+        var stringNum = userInput.value.toString();
+        display(reverse(stringNum));
+        
     });
 
 }());
