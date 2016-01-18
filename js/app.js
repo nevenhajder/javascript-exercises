@@ -1,95 +1,76 @@
 
 /*  Assignment:
-        Write a JavaScript function to test if a string is a palindrome.
-        eg. madam, nurses run, redivider, A nut for a jar of tuna
-
-/*  Steps:
-        1. Get user's input
-        2. Strip spaces and convert to lower case
-        3. Check if palindrome
-            - get first letter
-            - get last letter
-            - slice them off the string
-            - compare them
-            - if same, repeat
-            - else not a palindrome
-        4. Display result
+        Write a function that takes a word and arranges all its characters alphabetically.
+        eg. webmaster -> abeemrstw
 */
 
-/*  Potential Improvements:
-        1. Improve simplify function to extract all punctuation.
-        2. Add some CSS classes for the display, eg. red text for error message.
-        3. Do this with a recursive function? 
+/*  Steps:
+        1. Get user input.
+        2. Go through the string and compare each character to the rest.
+        3. ...
+
+*/
+
+/*  The key to inserting characters at a specific point in a string
+    var output = [userInput.slice(0, 2), '?', userInput.slice(2)].join('');
+*/
+
+/*  Potential Improvement:
+        A much more elegant solution:
+            userInput.split('').sort().join('');
+        .split(''): converts the string to an array, separated by ''.
+        .sort(): rearranges the array 'according to string Unicode code points'.
+        .join(''): joins the array with '' as a separator.
 */
 
 (function () {
     "use strict";
 
+
     /* Variables */
+
     var userInput = document.getElementById("userInput");
-    var btnCheck = document.getElementById("btnCheck");
+    var btnAlphabetize = document.getElementById("btnAlphabetize");
     var resultDisplay = document.getElementById("resultDisplay");
 
+
     /* Functions */
-    function simplify (arg) {
-        /* Remove white spaces with a regex */
-        arg = arg.replace(/\s+/g, '');
 
-        /* Convert all characters to lower case */
-        arg = arg.toLowerCase();
+    function alphabetize (str) {
+        var alphaStr = '';
 
-        /* Return the simplified string */
-        return arg;
-    }
-
-    function isPalindrome (pali) {
-        var fLetter;
-        var lLetter;
-        /* Simplify user input */
-        var simplePali = simplify(pali);
-        var length = simplePali.length;
-        
-        /* Check for appropriate length */
-        if (length < 2) { return "Error!"; }
-
-        /* Check that it's a palindrome and return true or false */
-        for (var i = length; i > 1; i -= 2) {
-
-            fLetter = simplePali.substr(0,1);
-            lLetter = simplePali.substr(-1, 1);
-
-            /* Compare first and last letters */
-            if (fLetter !== lLetter) {
-                return false;
-            } else if (fLetter === lLetter) {
-                /* Slice the first and last letters off the string */
-                simplePali = simplePali.slice(1, -1);
-            }
-
-            /* Check simplePali length for the end */
-            if (simplePali.length <= 1) {
-                return true;
+        for (var i = 0; i < str.length; i++) {
+            for (var j = 0; j <= alphaStr.length; j++) {
+                /*  If less than the character in alphaString,
+                    insert it in the appropriate spot.
+                */
+                if (str.charAt(i) < alphaStr.charAt(j)) {
+                    alphaStr = [alphaStr.slice(0, j), str.charAt(i), alphaStr.slice(j)].join('');
+                    break;
+                }
+                /*  If greater than last character in alphaString,
+                    add to the end of alphaString.
+                */
+                else if (str.charAt(i) > alphaStr.charAt(alphaStr.length - 1)) {
+                    alphaStr = alphaStr + str.charAt(i);
+                    break;
+                }
             }
         }
+        return alphaStr;
     }
 
-    function display (arg) {
-        resultDisplay.textContent = arg;
+
+    function display(arg) {
+        resultDisplay.innerText = arg;
     }
+
 
     /* Events */
-    btnCheck.addEventListener('click', function(){
-        /* Get user input */
-        var phrase = userInput.value;
 
-        /* Check if user input is a palindrome */
-        if (isPalindrome(phrase) === "Error!") {
-            display("Error!");
-        } else if (!isPalindrome(phrase)) {
-            display("This is NOT a palindrome.");
-        } else {
-            display("This IS a palindrome.");
-        }
+    btnAlphabetize.addEventListener('click', function() {
+        var userString = userInput.value;
+        display(alphabetize(userString));
     });
 
 }());
