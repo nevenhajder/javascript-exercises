@@ -1,26 +1,16 @@
 
 /*  Assignment:
-        Write a function that takes a word and arranges all its characters alphabetically.
-        eg. webmaster -> abeemrstw
+        Write a JavaScript function that converts the first letter of each word of the string in upper case.
+        the quick brown fox -> The Quick Brown Fox
 */
 
 /*  Steps:
         1. Get user input.
-        2. Go through the string and compare each character to the rest.
-        3. ...
+        2. Break sentence into an array of words.
+        3. Convert the first letter of each word to uppercase.
+        4. Join the array back into a single string.
+        5. Display the new string to the user.
 
-*/
-
-/*  The key to inserting characters at a specific point in a string
-    var output = [userInput.slice(0, 2), '?', userInput.slice(2)].join('');
-*/
-
-/*  Potential Improvement:
-        A much more elegant solution:
-            userInput.split('').sort().join('');
-        .split(''): converts the string to an array, separated by ''.
-        .sort(): rearranges the array 'according to string Unicode code points'.
-        .join(''): joins the array with '' as a separator.
 */
 
 (function () {
@@ -30,36 +20,21 @@
     /* Variables */
 
     var userInput = document.getElementById("userInput");
-    var btnAlphabetize = document.getElementById("btnAlphabetize");
+    var btnCapitalize = document.getElementById("btnCapitalize");
     var resultDisplay = document.getElementById("resultDisplay");
 
 
     /* Functions */
 
-    function alphabetize (str) {
-        var alphaStr = '';
+    function capitalize(arg) {
+        var words = arg.split(' ');
 
-        for (var i = 0; i < str.length; i++) {
-            for (var j = 0; j <= alphaStr.length; j++) {
-                /*  If less than the character in alphaString,
-                    insert it in the appropriate spot.
-                */
-                if (str.charAt(i) < alphaStr.charAt(j)) {
-                    alphaStr = [alphaStr.slice(0, j), str.charAt(i), alphaStr.slice(j)].join('');
-                    break;
-                }
-                /*  If greater than last character in alphaString,
-                    add to the end of alphaString.
-                */
-                else if (str.charAt(i) > alphaStr.charAt(alphaStr.length - 1)) {
-                    alphaStr = alphaStr + str.charAt(i);
-                    break;
-                }
-            }
-        }
-        return alphaStr;
+        words.forEach(function(entry, i){
+            words[i] = entry[0].toUpperCase() + entry.slice(1);
+        });
+
+        return words.join(' ');
     }
-
 
     function display(arg) {
         resultDisplay.innerText = arg;
@@ -67,11 +42,12 @@
 
 
     /* Events */
+    btnCapitalize.addEventListener('click', function(){
+        var phrase = userInput.value;
 
-    btnAlphabetize.addEventListener('click', function() {
-        var userString = userInput.value;
-        display(alphabetize(userString));
+        display(capitalize(phrase));
     });
+
 
 }());
 
