@@ -1,16 +1,14 @@
 
 /*  Assignment:
-        Write a JavaScript function that converts the first letter of each word of the string in upper case.
-        the quick brown fox -> The Quick Brown Fox
+        Write a JavaScript function that accepts a string as a parameter and find the longest word within the string.
+        Web Development Tutorial > Development
 */
 
 /*  Steps:
         1. Get user input.
         2. Break sentence into an array of words.
-        3. Convert the first letter of each word to uppercase.
-        4. Join the array back into a single string.
-        5. Display the new string to the user.
-
+        3. Use the Array.sort() method to reorder the words based on length.
+        4. Display the last word in the array as it will be the longest.
 */
 
 (function () {
@@ -20,33 +18,39 @@
     /* Variables */
 
     var userInput = document.getElementById("userInput");
-    var btnCapitalize = document.getElementById("btnCapitalize");
+    var btnLongest = document.getElementById("btnLongest");
     var resultDisplay = document.getElementById("resultDisplay");
 
 
     /* Functions */
+    function btnLongestClick() {
+        var phrase = userInput.value;
+        var wordArray = phrase.split(' ');
 
-    function capitalize(arg) {
-        var words = arg.split(' ');
+        /* How .sort works:
+            "If compareFunction(a, b) is less than 0,
+            sort a to a lower index than b, i.e. a comes first."
+        */
+        wordArray = wordArray.sort(function(a,b) {
 
-        words.forEach(function(entry, i){
-            words[i] = entry[0].toUpperCase() + entry.slice(1);
+            if (a.length < b.length) { return -1; }
+
+            if (a.length > b.length) { return 1; }
+
+            return 0;
         });
 
-        return words.join(' ');
+        displayResult("This is the longest word in that phrase : "+wordArray[wordArray.length-1]);
+        console.log(wordArray);
     }
 
-    function display(arg) {
-        resultDisplay.innerText = arg;
+    function displayResult(arg) {
+        resultDisplay.textContent = arg;
     }
 
 
     /* Events */
-    btnCapitalize.addEventListener('click', function(){
-        var phrase = userInput.value;
-
-        display(capitalize(phrase));
-    });
+    btnLongest.addEventListener("click", btnLongestClick);
 
 
 }());
