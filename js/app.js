@@ -1,14 +1,16 @@
 
 /*  Assignment:
-        Write a JavaScript function that accepts a string as a parameter and find the longest word within the string.
-        Web Development Tutorial > Development
+        Count the number of vowels in a string (don't count Y)
+        The quick brown fox > 5 vowels
 */
 
 /*  Steps:
         1. Get user input.
-        2. Break sentence into an array of words.
-        3. Use the Array.sort() method to reorder the words based on length.
-        4. Display the last word in the array as it will be the longest.
+        2. Convert the phrase to lower case.
+        3. Create an array of vowels.
+        4. Search for each vowel in the phrase.
+        5. Count every time you come accross a vowel.
+        6. Display the result.
 */
 
 (function () {
@@ -18,31 +20,26 @@
     /* Variables */
 
     var userInput = document.getElementById("userInput");
-    var btnLongest = document.getElementById("btnLongest");
+    var btnVoweler = document.getElementById("btnVoweler");
     var resultDisplay = document.getElementById("resultDisplay");
 
+    var vowels = ["a","e","i","o","u"];
 
     /* Functions */
-    function btnLongestClick() {
-        var phrase = userInput.value;
-        var wordArray = phrase.split(' ');
+    function countVowels(phrase) {
+        var total = 0;
 
-        /* How .sort works:
-            "If compareFunction(a, b) is less than 0,
-            sort a to a lower index than b, i.e. a comes first."
-        */
-        wordArray = wordArray.sort(function(a,b) {
-
-            if (a.length < b.length) { return -1; }
-
-            if (a.length > b.length) { return 1; }
-
-            return 0;
+        vowels.forEach(function(a) {
+            for (var i = 0; i < phrase.length; i++) {
+                if (phrase.charAt(i) === a) {
+                    total += 1;
+                }
+            }
         });
 
-        displayResult("This is the longest word in that phrase : "+wordArray[wordArray.length-1]);
-        console.log(wordArray);
+        return total;
     }
+
 
     function displayResult(arg) {
         resultDisplay.textContent = arg;
@@ -50,8 +47,11 @@
 
 
     /* Events */
-    btnLongest.addEventListener("click", btnLongestClick);
-
+    btnVoweler.addEventListener("click", function() {
+        var userString = userInput.value;
+        var numVowels = countVowels(userString);
+        displayResult("Your phrase has "+ numVowels +" vowels in it.");
+    });
 
 }());
 
