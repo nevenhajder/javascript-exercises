@@ -1,15 +1,15 @@
 
 /*  Assignment:
-        Count the number of vowels in a string (don't count Y)
-        The quick brown fox > 5 vowels
+        Write a JavaScript function that accepts a number as a parameter and check the number is prime or not.
+        *A prime number is only divisible by 1 and itself. eg. 3,7,11,13.
 */
 
 /*  Steps:
-        1. Get user input.
-        2. Convert the phrase to lower case.
-        3. Create an array of vowels.
-        4. Search for each vowel in the phrase.
-        5. Count every time you come accross a vowel.
+        1. Get number from user.
+        2. Start a loop from 1 to the userNumber.
+        3. Use % on the userNumber to check for remainder.
+        4. If there is no remainder, count that number as a divisor.
+        5. If there are more than 2 divisors, then the number is not prime.
         6. Display the result.
 */
 
@@ -20,39 +20,42 @@
     /* Variables */
 
     var userInput = document.getElementById("userInput");
-    var btnVoweler = document.getElementById("btnVoweler");
+    var btnIsPrime = document.getElementById("btnIsPrime");
     var resultDisplay = document.getElementById("resultDisplay");
 
-    var vowels = ["a","e","i","o","u"];
 
     /* Functions */
-    function countVowels(phrase) {
-        var total = 0;
+    function isPrime(num) {
+        var divisors = 0;
 
-        vowels.forEach(function(a) {
-            for (var i = 0; i < phrase.length; i++) {
-                if (phrase.charAt(i) === a) {
-                    total += 1;
-                }
+        for (var i = 1; i <= num; i++) {
+            /* If there is no remainder, increment divisors. */
+            if ((num % i) === 0) {
+                divisors += 1;
             }
-        });
+        }
 
-        return total;
+        if (divisors > 2) {
+            return false;
+        }
+
+        return true;
     }
-
 
     function displayResult(arg) {
         resultDisplay.textContent = arg;
     }
 
-
     /* Events */
-    btnVoweler.addEventListener("click", function() {
-        var userString = userInput.value;
-        var numVowels = countVowels(userString);
-        displayResult("Your phrase has "+ numVowels +" vowels in it.");
-    });
+    btnIsPrime.addEventListener('click', function() {
+        var userNum = userInput.value;
 
+        if (isPrime(userNum)) {
+            displayResult("You're number is a prime one!");
+        } else {
+            displayResult("You're number, sadly, is not prime.");
+        }
+    });
 }());
 
 
