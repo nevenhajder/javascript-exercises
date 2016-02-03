@@ -1,58 +1,35 @@
 
 /*  Assignment:
-        Write a JavaScript function which accepts N, and returns an identity matrix with dimensions NxN.
-        For example,
-        idMatrix(3);
-            100
-            010
-            001
+        Write a JavaScript function which will take an array of numbers stored and find the second lowest and second greatest numbers, respectively.
 */
 
 /*  Steps:
-        1. Get number from user.
-        2. Use 2 for loops to traverse the matrix.
-        3. When both loop counters are equal assign a 1 in that spot, otherwise assign a 0.
-        4. ...
+        1. Sort array of numbers from least to greatest.
+        2. Access array[1] for second lowest and array[array.length-2] for second highest.
+        3. Return the two numbers.
 */
 
 (function () {
     "use strict";
 
     /* Variables */
-
+    var numArray = [5,4,2,3,1];
 
     /* Functions */
+    function secondMost(arr) {
+        /* Sort the array in numerical order */
+        var sortedArr = arr.sort(function(a,b){
+            if (a<b) {return -1;}
+            if (a>b) {return 1;}
+            return 0;
+        });
 
-    /* Create an identity matrix of specified size */
-    function idMatrix(size) {
-        var matrix = [];
-
-        for (var row=0; row < size; row++) {
-            for (var col=0; col < size; col++) {
-                if (row === col) {
-                    matrix.push(1);
-                } else {
-                    matrix.push(0);
-                }
-            }
-        }
-
-        return matrix;
+        console.log('2nd lowest : '+sortedArr[1]);
+        console.log('2nd highest : '+sortedArr[sortedArr.length-2]);
     }
 
-    /* Display the matrix in 2 dimensions */
-    function displayMatrix(matrix, arg) {
-        var line;
+    secondMost(numArray);
 
-        for (var i=0; i<arg; i++) {
-            line = matrix.slice(0,arg);
-            matrix.splice(0,arg);
-            console.log(line);
-        }
-    }
-
-
-    displayMatrix(idMatrix(10),10);
 }());
 
 
