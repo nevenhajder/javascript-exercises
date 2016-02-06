@@ -15,15 +15,19 @@
             <main class="col-sm-4 col-sm-offset-4">
                 <br><br>
 
-                <label for="userInput">Enter a number to test if it's
-                    <a href="https://en.wikipedia.org/wiki/Perfect_number">perfect</a>.
-                </label>
-
-                <input type="number" class="form-control" id="userInput">
+                <div class="input-group">
+                    <label class="input-group-addon" for="base">Base</label>
+                    <input type="number" class="form-control" id="base">
+                </div>
+                <br>
+                <div class="input-group">
+                    <label class="input-group-addon" for="exponent">Exp.</label>
+                    <input type="number" class="form-control" id="exponent">
+                </div>
 
                 <br>
 
-                <button type="button" class="btn btn-primary btn-lg btn-block" id="btnPerfect">Test</button>
+                <button type="button" class="btn btn-primary btn-lg btn-block" id="btnCalc">Calculate</button>
 
 
                 <h1 id="resultDisplay"></h1>
