@@ -1,38 +1,41 @@
 
 /*  Assignment:
-        Write a JavaScript function to compute the value of bn where n is the exponent and b is the bases.
-        Accept b and n from the user and display the result.
+        Write a JavaScript function to extract unique characters from a string.
+        Master string : 'thequickbrownfoxjumpsoverthelazydog'
 */
 
 /*  Steps:
-        1. Get the base and exponent from the user.
-        2. Compute using Math.pow(base, exponent).
-        3. Display result.
+        1. Present a string to the user.
+        2. Ask them to type the string of characters they want to extract.
+        3. Extract characters from string
+        4. Display result.
 */
 
 (function () {
     "use strict";
 
     /* Variables */
-    var base = document.getElementById('base');
-    var exponent = document.getElementById('exponent');
-    var btnCalc = document.getElementById('btnCalc');
-    var display = document.getElementById('resultDisplay');
+    var display = document.getElementById('display');
+    var userInput = document.getElementById('userInput');
+    var btnExtract = document.getElementById('btnExtract');
 
     /* Functions */
-    function expo(base,exp) {
-        return Math.pow(base,exp);
+    function extractClick() {
+        var masterString = display.textContent;
+        var userString = userInput.value;
+        var stringPosition = masterString.indexOf(userString);
+
+        return stringPosition === -1 ? 'nope' : masterString.substr(stringPosition, userString.length);
+        // return masterString.contains(userString);
     }
 
-    function displayR(arg) {
+    function updateDisplay(arg) {
         display.textContent = arg;
     }
 
     /* Events */
-    btnCalc.addEventListener('click', () => {
-        var userBase = base.value;
-        var userExp = exponent.value;
-        displayR(expo(userBase,userExp));
+    btnExtract.addEventListener('click', () => {
+        updateDisplay(extractClick());
     });
 
 

@@ -12,25 +12,19 @@
 
     <div class="container-fluid">
         <div class="row">
-            <main class="col-sm-4 col-sm-offset-4">
-                <br><br>
+            <main class="col-sm-6 col-sm-offset-3">
 
-                <div class="input-group">
-                    <label class="input-group-addon" for="base">Base</label>
-                    <input type="number" class="form-control" id="base">
-                </div>
-                <br>
-                <div class="input-group">
-                    <label class="input-group-addon" for="exponent">Exp.</label>
-                    <input type="number" class="form-control" id="exponent">
-                </div>
-
+                <h1 id="display">thequickbrownfoxjumpsoverthelazydog</h1>
                 <br>
 
-                <button type="button" class="btn btn-primary btn-lg btn-block" id="btnCalc">Calculate</button>
 
+                <div class="input-group">
+                    <input type="text" class="form-control" id="userInput" placeholder="Type the string of characters to extract">
 
-                <h1 id="resultDisplay"></h1>
+                    <span class="input-group-btn">
+                        <button class="btn btn-success" type="button" id="btnExtract">Extract</button>
+                    </span>
+                </div>
 
             </main>
         </div>
