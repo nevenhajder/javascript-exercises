@@ -1,43 +1,54 @@
 
 /*  Assignment:
-        Write a JavaScript function to extract unique characters from a string.
-        Master string : 'thequickbrownfoxjumpsoverthelazydog'
-*/
-
-/*  Steps:
-        1. Present a string to the user.
-        2. Ask them to type the string of characters they want to extract.
-        3. Extract characters from string
-        4. Display result.
+        Write a JavaScript function to  get the number of occurrences of each letter in specified string.
+        eg. neven -> n = 2, v = 1, e = 2
 */
 
 (function () {
     "use strict";
 
     /* Variables */
-    var display = document.getElementById('display');
     var userInput = document.getElementById('userInput');
-    var btnExtract = document.getElementById('btnExtract');
+    var btnCount = document.getElementById('btnCount');
+    var display = document.getElementById('display');
 
     /* Functions */
-    function extractClick() {
-        var masterString = display.textContent;
-        var userString = userInput.value;
-        var stringPosition = masterString.indexOf(userString);
+    function countChars(str) {
+        var regex;
+        var count;
+        var results = [];
 
-        return stringPosition === -1 ? 'nope' : masterString.substr(stringPosition, userString.length);
-        // return masterString.contains(userString);
+        while (str.length > 0) {
+            /* Create a new RegExp with the first letter in str */
+            regex = new RegExp(str.charAt(0), 'g');
+
+            /* Search the string using regex */
+            count = str.match(regex).length;
+
+            /* Push the character and its count to the results array */
+            results.push('\n'+str.charAt(0)+' = '+count);
+
+            /* Remove the counted character in the string */
+            str = str.replace(regex, '');
+        }
+
+        return results;
     }
 
-    function updateDisplay(arg) {
-        display.textContent = arg;
+    function displayResults(arg) {
+        display.innerText = arg;
     }
 
     /* Events */
-    btnExtract.addEventListener('click', () => {
-        updateDisplay(extractClick());
+    btnCount.addEventListener('click', () => {
+        var userString = userInput.value;
+        displayResults(countChars(userString));
     });
 
+
+
+
+    countChars('thtequickbrownfxjmpsvlazydg');
 
 }());
 
