@@ -1,25 +1,32 @@
 
 /*  Assignment:
-        Write a JavaScript function that returns array elements larger than a number.
+        Write a JavaScript function that generates a string id (specified length) of random characters.
+        Sample: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 
 */
 
 (function () {
     "use strict";
 
-    var testArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 45, 50, 13, 18];
-    var testNum = 15;
-    var largerList = [];
+    var btnID = document.getElementById('btnID');
+    var display = document.getElementById('display');
+    var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-    function largerThan(n, arr) {
-        largerList = arr.filter((el) => {
-            return el > n;
-        });
-
-        return largerList;
+    function generateID(l) {
+        var newID = '';
+        for (var i = 0; i<l; i++) {
+            newID += characters.charAt(Math.floor(Math.random()*characters.length));
+        }
+        return newID;
     }
 
-    console.log(largerThan(testNum, testArray));
+    function displayResult(arg) {
+        display.innerText = arg;
+    }
+
+    btnID.addEventListener('click', () => {
+        displayResult(generateID(8));
+    });
 
 }());
 
